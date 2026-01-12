@@ -5,6 +5,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
 import gigRoutes from './routes/gig.js';
+import bidRoutes from './routes/bid.js';
 
 dotenv.config();
 connectDB();
@@ -21,6 +22,7 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/gigs', gigRoutes);
+app.use('/api/bids', bidRoutes);
 
 const PORT = process.env.PORT || 5000;
 
