@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex flex-col items-center">
           <Link to="/" className="flex items-center gap-2 group mb-6">
             <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center shadow-md shadow-emerald-100 transform group-hover:rotate-3 transition-transform">
-              <span className="text-white font-black text-lg italic font-serif">G</span>
+              <img src="/Logo.png" alt="GigFlow Logo" className='w-full h-full rounded-xl object-center' />
             </div>
             <span className="text-xl font-bold text-slate-800 tracking-tight">
               Gig<span className="text-emerald-600">Flow</span>
