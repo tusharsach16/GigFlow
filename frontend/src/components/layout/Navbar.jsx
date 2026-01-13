@@ -32,7 +32,6 @@ const Navbar = () => {
           
           <Link to={logoLink} className="flex items-center gap-2 group z-10" onClick={closeMobileMenu}>
             <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200 transform group-hover:rotate-3 transition-all duration-300">
-              {/* <span className="text-white font-black text-xl italic font-serif">G</span> */}
               <img src="/Logo.png" alt="GigFlow Logo" className='w-full h-full rounded-xl object-center' />
             </div>
             <span className="text-xl font-bold text-slate-800 tracking-tight">
