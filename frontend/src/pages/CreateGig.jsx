@@ -20,7 +20,13 @@ const CreateGig = () => {
     try {
       const result = await dispatch(createGig(formData)).unwrap();
       toast.success('Gig created successfully!');
-      navigate(`/gigs/${result.gig._id || result.data._id}`);
+      setFormData({ title: '', description: '', budget: '' });
+      const gigId = result?._id;
+      if (gigId) {
+        navigate(`/gigs/${gigId}`);
+      } else {
+        toast.error('Failed to get gig ID');
+      }
     } catch (error) {
       toast.error(error);
     }
