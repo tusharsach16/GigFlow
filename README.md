@@ -661,8 +661,8 @@ CLIENT_URL=https://your-frontend-url.com
 ## 🎬 Demo
 
 ### Live Links
-- **Frontend**: [https://gigflow-frontend.vercel.app](https://gigflow-frontend.vercel.app)
-- **Backend API**: [https://gigflow-backend.railway.app](https://gigflow-backend.railway.app)
+- **Frontend**: [https://gig-flow-sable.vercel.app/](https://gig-flow-sable.vercel.app/)
+- **Backend API**: [https://gigflow-hgsk.onrender.com](https://gigflow-hgsk.onrender.com)
 
 ### Demo Video
 📹 **Loom Walkthrough**: [Watch 2-minute demo](https://www.loom.com/share/your-video-link)
