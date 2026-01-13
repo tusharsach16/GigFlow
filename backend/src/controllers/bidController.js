@@ -133,6 +133,17 @@ export const hireBids = async(req, res) => {
             .populate('freelancerId', 'name email')
             .populate('gigId', 'title description budget');
 
+        const freelancerRoom = bid.freelancerId._id ? bid.freelancerId._id.toString() : bid.freelancerId.toString();
+        
+        console.log("Sending notification to room:", freelancerRoom);
+
+        req.io.to(freelancerRoom).emit('hired', {
+            message: `Congratulations! You have been hired for the gig: ${gig.title}`,
+            gigTitle: gig.title,
+            gigId: gig._id,
+            timestamp: new Date()
+        });
+        
         res.status(200).json({success: true,message: 'Freelance hired successfully', bid: updateBid});
     } catch(error) {
         await session.abortTransaction();
