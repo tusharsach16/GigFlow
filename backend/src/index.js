@@ -15,7 +15,6 @@ connectDB();
 const app = express();
 const httpServer = createServer(app);
 
-// Allow multiple client URLs (comma-separated in env or array)
 const clientUrls = process.env.CLIENT_URL ? 
     process.env.CLIENT_URL.split(',').map(url => url.trim()) : [];
 
@@ -37,23 +36,30 @@ const io = new Server(httpServer, {
             }
         },
         credentials: true,
-        methods: ['GET', 'POST']
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
     }
 });
 
-app.use(cors({
+const corsOptions = {
     origin: function(origin, callback) {
         if (!origin) return callback(null, true);
         if (allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
+            console.log('CORS blocked origin:', origin);
             callback(new Error('Not allowed by CORS'));
         }
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
+    exposedHeaders: ['Set-Cookie'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -83,5 +89,6 @@ const PORT = process.env.PORT || 5000;
 
 httpServer.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
     console.log(`Allowed origins: ${allowedOrigins.join(', ')}`);
 });
