@@ -15,11 +15,15 @@ connectDB();
 const app = express();
 const httpServer = createServer(app);
 
+// Allow multiple client URLs (comma-separated in env or array)
+const clientUrls = process.env.CLIENT_URL ? 
+    process.env.CLIENT_URL.split(',').map(url => url.trim()) : [];
+
 const allowedOrigins = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'https://gig-flow-sable.vercel.app',
-    process.env.CLIENT_URL
+    ...clientUrls
 ].filter(Boolean);
 
 const io = new Server(httpServer, {
