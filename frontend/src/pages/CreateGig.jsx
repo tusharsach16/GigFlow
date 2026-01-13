@@ -21,7 +21,8 @@ const CreateGig = () => {
       const result = await dispatch(createGig(formData)).unwrap();
       toast.success('Gig created successfully!');
       setFormData({ title: '', description: '', budget: '' });
-      const gigId = result?._id;
+      const gigId = result.data._id;
+      console.log(gigId);
       if (gigId) {
         navigate(`/gigs/${gigId}`);
       } else {
