@@ -1,6 +1,6 @@
 import {Routes, Route} from 'react-router-dom';
 import {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { getMe } from '../store/slices/authSlice';
 import ProtectedRoute from './ProtectedRoute';
 import Layout from '../components/layout/Layout';
@@ -18,10 +18,24 @@ import TermsOfService from '../pages/TermsOfService';
 
 const AppRoutes = () => {
     const dispatch = useDispatch();
+    const {loading} = useSelector((state) => state.auth);
     useEffect(() => {
         dispatch(getMe());
     }, [dispatch]);
 
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <div className="flex flex-col items-center gap-4">
+                    <img
+                        src="/Logo.png"
+                        alt="GigFlow logo"
+                        className="h-16 w-16 rounded-xl object-contain shadow-sm"
+                    />
+                </div>
+            </div>
+        );
+    }
     return (
         <Routes>
             <Route path='/' element={<Layout/>}>

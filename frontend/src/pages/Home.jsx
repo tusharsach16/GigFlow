@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Sparkles, ArrowRight, Users, Briefcase, Shield, Leaf, Globe, CheckCircle } from 'lucide-react';
+import { ArrowRight, Users, Briefcase, Shield, Leaf } from 'lucide-react';
 
 const Home = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <div className="min-h-screen bg-[#f8faf9] flex flex-col items-center justify-center px-4 py-20 relative overflow-hidden">
@@ -27,19 +28,21 @@ const Home = () => {
 
         <div className="flex flex-col sm:flex-row gap-5 justify-center mb-24">
           <Link
-            to="/browse"
+            to={isAuthenticated ? "/dashboard" : "/browse"}
             className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-10 py-5 text-lg transition-all duration-300 shadow-lg shadow-emerald-200 rounded-full inline-flex items-center gap-2 justify-center"
           >
-            Explore Gigs
+            {isAuthenticated ? "Go to Dashboard" : "Explore Gigs"}
             <ArrowRight className="w-5 h-5" />
           </Link>
           
-          <Link
-            to="/register"
-            className="bg-white border border-slate-500 text-slate-600 hover:border-emerald-200 hover:bg-emerald-50/30 font-semibold px-10 py-5 text-lg transition-all duration-300 rounded-full flex items-center justify-center"
-          >
-            Join as Talent
-          </Link>
+          {!isAuthenticated && (
+            <Link
+              to="/register"
+              className="bg-white border border-slate-500 text-slate-600 hover:border-emerald-200 hover:bg-emerald-50/30 font-semibold px-10 py-5 text-lg transition-all duration-300 rounded-full flex items-center justify-center"
+            >
+              Join as Talent
+            </Link>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -78,4 +81,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home;  

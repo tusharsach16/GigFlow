@@ -80,6 +80,7 @@ const authSlice = createSlice({
             .addCase(logout.fulfilled, (state) => {
                 state.user = null;
                 state.isAuthenticated = false;
+                state.lodading = false;
             })
             .addCase(getMe.pending, (state) => {
               state.loading = true;

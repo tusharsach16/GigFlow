@@ -21,7 +21,6 @@ const Navbar = () => {
     navigate('/');
   };
 
-  const isGuestPage = ["/", "/login", "/register"].includes(location.pathname);
   const logoLink = isAuthenticated ? "/dashboard" : "/";
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
@@ -50,7 +49,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-5 z-10">
             <div className="hidden md:flex items-center gap-5">
-              {(isGuestPage || !isAuthenticated) ? (
+              {!isAuthenticated ? (
                 <>
                   <Link to="/login" className="text-sm font-semibold text-slate-700 hover:text-slate-800 transition-colors">
                     Sign in
