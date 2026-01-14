@@ -665,7 +665,7 @@ CLIENT_URL=https://your-frontend-url.com
 - **Backend API**: [https://gigflow-hgsk.onrender.com](https://gigflow-hgsk.onrender.com)
 
 ### Demo Video
-📹 **Loom Walkthrough**: [Watch 2-minute demo](https://www.loom.com/share/your-video-link)
+📹 **Screen Recording**: [Watch 2-minute demo](https://drive.google.com/file/d/1eXU5kNAuPuyjHsAka2nLJroNlrK6Kgrl/view?usp=drive_link)
 
 **Demo Covers:**
 1. User registration and login
