@@ -1,5 +1,10 @@
 import Gig from '../models/Gig.js';
 
+// Escape regex special characters to prevent ReDoS attacks
+const escapeRegex = (string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
 export const createGig = async (req, res) => {
     try {
         const {title, description, budget} = req.body;
@@ -18,7 +23,8 @@ export const getAllGigs = async (req, res) => {
         const {search} = req.query;
         let query = {status: 'open'};
         if(search) {
-            query.title = {$regex: search, $options: 'i'};
+            const sanitizedSearch = escapeRegex(search.trim());
+            query.title = {$regex: sanitizedSearch, $options: 'i'};
         }
         const gigs = await Gig.find(query).populate('ownerId', 'name email').sort({createdAt: -1});
         res.status(200).json({success: true,count: gigs.length, data: gigs});
