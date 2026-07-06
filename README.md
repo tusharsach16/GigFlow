@@ -1,6 +1,6 @@
 # GigFlow - Freelance Marketplace Platform
 
-> A full-stack freelance marketplace platform where clients can post jobs (Gigs) and freelancers can submit competitive bids. Built as part of the Full Stack Development Internship Assignment.
+> A full-stack freelance marketplace platform where clients can post jobs (Gigs) and freelancers can submit competitive bids.
 
 ## 📋 Table of Contents
 
